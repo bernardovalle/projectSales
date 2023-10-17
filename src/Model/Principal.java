@@ -1,7 +1,10 @@
 package Model;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.mysql.cj.protocol.a.authentication.MysqlClearPasswordPlugin;
 
 import DAO.PagamentoDAO;
 import DAO.ProdutoDAO;
@@ -32,7 +35,7 @@ public class Principal {
         	case 1:
         		do {
         			System.out.println("1 - Cadastrar Produtos\n" +
-        							   "2 - Listas Produtos\n"+
+        							   "2 - Listar Produtos\n"+
         							   "3 - Alterar Produto\n"+
         							   "4 - Deletar Produto\n"+
         							   "5 - Voltar menu principal.");
@@ -49,21 +52,31 @@ public class Principal {
                 		venda.adicionarItemVenda(produto);
                 		break;
         			case 2:
-        				ArrayList<Produto> resultadoProdutosBD = new ArrayList<Produto>();
-        				resultadoProdutosBD = produtoDAO.read();
-        				for(Produto prod : resultadoProdutosBD) {
-        					System.out.println("Produto: "+prod.getNome()+". Preço: "+prod.getPreco()+". Quantidade: "+prod.getQuantidadeEstoque());
-        				}
+        				listarProdutos();
+        				break;
         			case 3:
-        			
+        				System.out.println("Informe o id do produto");
+                		produto.setIdProduto(leia.nextInt());
+        				System.out.println("Informe o novo nome do produto");
+                		produto.setNome(leia.next());
+                		System.out.println("Informe o novo preço do produto");
+                		produto.setPreco(leia.nextDouble());
+                		System.out.println("Informe a nova quantidade do produto");
+                		produto.setQuantidadeEstoque(leia.nextInt());
+                		produtoDAO.update(produto);
+                		break;
         			case 4:
-        				
+        				listarProdutos();
+        				System.out.println("Informe o id do produto");
+        				produto.setIdProduto(leia.nextInt());
+        				produtoDAO.delete(produto);
                 	case 5:
-                		System.out.println("");
+                		System.out.print("");
                 		break;
         			}
         			
         		} while (opcaoSubMenu != 5);
+        		System.out.println("_______________________");
         		break;
         	case 2:
         		venda.visualizarVenda();
@@ -86,6 +99,16 @@ public class Principal {
         } while (opcao != 4);
         
 		
+	}
+	
+	public static void listarProdutos() {
+		ArrayList<Produto> resultadoProdutosBD = new ArrayList<Produto>();
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		resultadoProdutosBD = produtoDAO.read();
+		for(Produto prod : resultadoProdutosBD) {
+			System.out.println("Produto: Id - "+prod.getIdProduto()+", "+prod.getNome()+". Preço: "+prod.getPreco()+" Quantidade: "+prod.getQuantidadeEstoque());
+		}
+		System.out.println("___________________");
 	}
 
 }

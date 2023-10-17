@@ -35,7 +35,7 @@ public class ProdutoDAO {
 		PreparedStatement stmt = null;
 		try {
 			// construir o comando SLQ
-			stmt = conexao.prepareStatement("UPDATE produto SET nome = ?, preco = ?, quantidade_estoque = ?) where id_produto = ?");
+			stmt = conexao.prepareStatement("UPDATE produto SET nome = ?, preco = ?, quantidade_estoque = ? where idproduto = ?");
 			stmt.setString(1, produto.getNome());
 			stmt.setDouble(2, produto.getPreco());
 			stmt.setInt(3, produto.getQuantidadeEstoque());
@@ -80,7 +80,7 @@ public class ProdutoDAO {
 		PreparedStatement stmt = null;
 		try {
 			// construir o comando SLQ
-			stmt = conexao.prepareStatement("DELETE from produto where id_produto = ?");
+			stmt = conexao.prepareStatement("DELETE from produto where idproduto = ?");
 			stmt.setInt(1, produto.getIdProduto());
 			stmt.executeUpdate();
 		} catch (SQLException erro) {
