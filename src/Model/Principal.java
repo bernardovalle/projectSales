@@ -70,6 +70,7 @@ public class Principal {
         				System.out.println("Informe o id do produto");
         				produto.setIdProduto(leia.nextInt());
         				produtoDAO.delete(produto);
+        				break;
                 	case 5:
                 		System.out.print("");
                 		break;
