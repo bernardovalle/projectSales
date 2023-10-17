@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Venda {
-	
+	private int idVenda;
 	private float vlrTotal;
 	private ArrayList<Produto> listaProdutos = new ArrayList<Produto>();
 	
@@ -38,6 +38,14 @@ public class Venda {
         System.out.println("________________");
 	}
 	
+	public int getIdVenda() {
+		return idVenda;
+	}
+
+	public void setIdVenda(int idVenda) {
+		this.idVenda = idVenda;
+	}
+
 	public Float getVlrTotal() {
 		return vlrTotal;
 	}
