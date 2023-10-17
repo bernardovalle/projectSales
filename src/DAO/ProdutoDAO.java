@@ -61,7 +61,7 @@ public class ProdutoDAO {
 			while(rs.next()) {
 				//replicar o rsultset para o ArrayList
 				Produto produto = new Produto();
-				produto.setIdProduto(rs.getInt("id_produto"));
+				produto.setIdProduto(rs.getInt("idproduto"));
 				produto.setNome(rs.getString("nome"));
 				produto.setPreco(rs.getDouble("preco"));
 				produto.setQuantidadeEstoque(rs.getInt("quantidade_estoque"));
