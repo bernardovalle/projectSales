@@ -2,6 +2,7 @@ package Model;
 
 public class Pagamento {
 	
+	private int idTipoPagamento;
 	private int tipoPagamento;
 	private String statusPagamento;
 

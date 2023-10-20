@@ -25,22 +25,14 @@ public class Principal {
         int opcao, opcaoSubMenu;
         
         do {
-        System.out.println("SELECIONE UMA DAS OPÇÕES ABAIXO");
-        System.out.println("1 - Menu Produtos\n" +
-        				   "2 - Menu Pagamento\n"+
-        				   "3 - Menu Venda\n"+
-        				   "4 - Sair");
+        listarMenuGeral();
         opcao = leia.nextInt();
         
         switch (opcao) {
         	case 1:
         		// PRODUTO
         		do {
-        			System.out.println("1 - Cadastrar Produtos\n" +
-        							   "2 - Listar Produtos\n"+
-        							   "3 - Alterar Produto\n"+
-        							   "4 - Deletar Produto\n"+
-        							   "5 - Voltar menu principal.");
+        			listarMenuProduto();
         			opcaoSubMenu = leia.nextInt();
         			switch (opcaoSubMenu) {	
         			case 1:
@@ -74,9 +66,7 @@ public class Principal {
         				produtoDAO.delete(produto);
         				break;
                 	case 5:
-                		 System.out.print("\033[H\033[2J");
-                         System.out.flush();
-                		
+                		System.out.println("");
                 		break;
         			}
         			
@@ -85,16 +75,26 @@ public class Principal {
         		break;
         	case 2:
         		// PAGAMENTO
-        		break;
+        		listarMenuPagamento();
+    			opcaoSubMenu = leia.nextInt();
+    			switch (opcaoSubMenu) {	
+    				case 1:
+    				
+    				case 2:
+    					
+    				case 3:
+    					
+    				case 4:
+    					
+    				case 5:
+    			
+    			}
+        		
+    			break;
         	case 3:
         		// VENDA
         		do {
-        			System.out.println("1 - Cadastrar Venda\n" +
-        							   "2 - Listar Vendas\n"+
-        							   "3 - Alterar Venda\n"+
-        							   "4 - Deletar Venda\n"+
-        							   "5 - Finalizar Venda\n"+
-        							   "6 - Voltar menu principal");
+        			listarMenuVenda();
         			opcaoSubMenu = leia.nextInt();
         			switch (opcaoSubMenu) {	
         			case 1:
@@ -146,7 +146,40 @@ public class Principal {
         		break;
         }
         } while (opcao != 4);
+	leia.close();
+	}
 	
+	public static void listarMenuGeral() {
+		 System.out.println("SELECIONE UMA DAS OPÇÕES ABAIXO");
+	     System.out.println("1 - Menu Produtos\n" +
+	        				   "2 - Menu Pagamento\n"+
+	        				   "3 - Menu Venda\n"+
+	        				   "4 - Sair");
+	}
+	
+	public static void listarMenuProduto() {
+		System.out.println("1 - Cadastrar Produtos\n" +
+				   "2 - Listar Produtos\n"+
+				   "3 - Alterar Produto\n"+
+				   "4 - Deletar Produto\n"+
+				   "5 - Voltar menu principal.");
+	}
+	
+	public static void listarMenuPagamento() {
+		System.out.println("1 - Cadastrar Pagamento\n" +
+				   "2 - Listar Pagamentos\n"+
+				   "3 - Alterar Pagamento\n"+
+				   "4 - Deletar Pagamento\n"+
+				   "5 - Voltar menu principal.");
+	}
+	
+	public static void listarMenuVenda() {
+		System.out.println("1 - Cadastrar Venda\n" +
+				   "2 - Listar Vendas\n"+
+				   "3 - Alterar Venda\n"+
+				   "4 - Deletar Venda\n"+
+				   "5 - Finalizar Venda\n"+
+				   "6 - Voltar menu principal");
 	}
 	
 	public static void listarProdutos() {
