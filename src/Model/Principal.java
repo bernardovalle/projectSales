@@ -18,6 +18,7 @@ public class Principal {
 		
 		Produto produto = new Produto();
         Venda venda = new Venda();
+        PagamentoDAO pagamentoDAO =  new PagamentoDAO();
         Pagamento pag = new Pagamento();
         ProdutoDAO produtoDAO = new ProdutoDAO();
         VendaDAO vendaDAO = new VendaDAO();
@@ -79,15 +80,30 @@ public class Principal {
     			opcaoSubMenu = leia.nextInt();
     			switch (opcaoSubMenu) {	
     				case 1:
-    				
+    					System.out.println("Informe o tipo de pagamento");
+                		pag.setTipoPagamento(leia.nextInt());
+                		pagamentoDAO.creat(pag);
     				case 2:
-    					
+    					listarPagamentos();
     				case 3:
-    					
+    					listarPagamentos();
+        				System.out.println("Informe o id do pagamento");
+                		pag.setIdTipoPagamento(leia.nextInt());
+                		System.out.println("Informe o novo tipo de pagamento");
+                		pag.setTipoPagamento(leia.nextInt());
+                		pagamentoDAO.update(pag);
+                		System.out.println("Pagamento editado.");
+                		break;
     				case 4:
-    					
+    					listarPagamentos();
+        				System.out.println("Informe o id do pagamento");
+        				pag.setIdTipoPagamento(leia.nextInt());
+        				pagamentoDAO.delete(pag);
+        				System.out.println("Pagamento Deletado.");
+        				break;
     				case 5:
-    			
+    					System.out.println("");
+                		break;
     			}
         		
     			break;
@@ -152,9 +168,9 @@ public class Principal {
 	public static void listarMenuGeral() {
 		 System.out.println("SELECIONE UMA DAS OPÇÕES ABAIXO");
 	     System.out.println("1 - Menu Produtos\n" +
-	        				   "2 - Menu Pagamento\n"+
-	        				   "3 - Menu Venda\n"+
-	        				   "4 - Sair");
+	        				"2 - Menu Pagamento\n"+
+	        				"3 - Menu Venda\n"+
+	        				"4 - Sair");
 	}
 	
 	public static void listarMenuProduto() {
@@ -198,6 +214,16 @@ public class Principal {
 		resultadovendasBD = vendaDAO.read();
 		for(Venda venda : resultadovendasBD) {
 			System.out.println("Venda: Id - "+venda.getIdVenda()+", "+venda.getVlrTotal());
+		}
+		System.out.println("___________________");
+	}
+	
+	public static void listarPagamentos() {
+		ArrayList<Pagamento> resultadoPagamentosBD = new ArrayList<Pagamento>();
+		PagamentoDAO pagamentoDAO = new PagamentoDAO();
+		resultadoPagamentosBD = pagamentoDAO.read();
+		for(Pagamento pag : resultadoPagamentosBD) {
+			System.out.println("Pagamento: Id - "+pag.getIdTipoPagamento()+", "+pag.getTipoPagamento());
 		}
 		System.out.println("___________________");
 	}

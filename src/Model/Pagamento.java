@@ -33,6 +33,12 @@ public class Pagamento {
 	        }
 	}
 	
+	public int getIdTipoPagamento() {
+		return idTipoPagamento;
+	}
+	public void setIdTipoPagamento(int idTipoPagamento) {
+		this.idTipoPagamento = idTipoPagamento;
+	}
 	public int getTipoPagamento() {
 		return tipoPagamento;
 	}
